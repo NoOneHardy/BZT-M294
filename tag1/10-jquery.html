@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <style style="display: block;" contenteditable>
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .blue {
+            border: 2px solid blue;
+        }
+
+        h1 {
+            font-size: 96px;
+            font-family: sans-serif;
+            background-image: linear-gradient(to right, #ff0000, #0000ff);
+            background-clip: unset;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <h1 onclick="$('#text1').show()">JavaScript</h1>
+    <p id="text1" onclick="$(this).hide()">Text 1</p>
+    <script>
+        let text = $('#text1').html();
+        $('#text1').html('Hallo Welt');
+        $('#text1').addClass('red');
+        $('#text1').addClass('blue');
+        $('#text1').removeClass('green');
+        $('#text1').addClass('green');
+        $('#text1').append('-append-');
+        $('#text1').prepend('-prepend-');
+        $('#text1').hide();
+        $('#text1').show();
+        $(this).hide();
+    </script>
+</body>
+
+</html>

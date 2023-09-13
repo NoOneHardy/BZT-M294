@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone');
+
+body {
+    color: white;
+    background-color: #141414;
+}
+
+h1 {
+    --color1: #40c9ff;
+    --color2: #e81cff;
+    font-size: 96px;
+    width: fit-content;
+    font-family: 'Montserrat';
+    background-image: linear-gradient(to right, var(--color1), var(--color2));
+    -webkit-text-fill-color: transparent;
+    background-clip: unset;
+    -webkit-background-clip: text;
+    transition: --color1 1s ease-in-out, --color2 1s ease-in-out;
+}
+
+p {
+    font-family: 'Montserrat';
+}
+
+.material-icons-two-tone.green-white {
+    filter: invert(19%) sepia(58%) saturate(6754%) hue-rotate(259deg) brightness(97%) contrast(111%);
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        --color1: #82f4b1;
+        --color2: #30c67c;
+    }
+}
+
+h2 {
+    font-family: 'Major Mono Display';
+}
