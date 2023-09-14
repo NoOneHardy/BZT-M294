@@ -1,0 +1,31 @@
+{
+    "cars": [
+        {
+            "id": 1,
+            "name": "Passat",
+            "fuel": "Diesel",
+            "color": "#000000",
+            "type": "Limousine",
+            "refuels": 0,
+            "lastRefuel": "Sep 14, 2023"
+        },
+        {
+            "id": 2,
+            "name": "Opel",
+            "fuel": "Benzin",
+            "color": "#008888",
+            "type": "SUV",
+            "refuels": 0,
+            "lastRefuel": "Sep 14, 2023"
+        },
+        {
+            "id": 3,
+            "name": "VW",
+            "fuel": "Elektro",
+            "color": "#006666",
+            "type": "Pickup",
+            "refuels": 0,
+            "lastRefuel": "Sep 14, 2023"
+        }
+    ]
+}

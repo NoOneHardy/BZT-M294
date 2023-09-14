@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+    font-family: 'Lato';
+}
+
+input[type="color"] {
+    visibility: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    visibility: visible;
+    border: none;
+}
+
+a.btn {
+    user-select: none;
+}
+
+.valign-wrapper {
+    height: 100%;
+}
+
+a#new {
+    margin: 20px 20px;
+}

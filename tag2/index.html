@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+
+    <!-- jQuery Dateformat -->
+    <script src="js/jquery-dateformat.js"></script>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <table class="grey lighten-1 striped responsive-table centered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Kraftstoff</th>
+                    <th>Farbe</th>
+                    <th>Bauart</th>
+                    <th>Betankungen</th>
+                    <th>Datum der letzten Betankung</th>
+                    <th>Aktion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-id="1">
+                    <td>1</td>
+                    <td>Passat</td>
+                    <td>Diesel</td>
+                    <td>
+                        <div class="valign-wrapper"><input disabled type="color" value="#000000"><span
+                                class="color-code">#000000</span></div>
+                    </td>
+                    <td>Limousine</td>
+                    <td>0</td>
+                    <td>Sep 14, 2023</td>
+                    <td>
+                        <a class="refuel btn waves-effect waves-light green lighten-3"><i
+                                class="material-icons green-text text-darken-4">local_gas_station</i></a>
+                        <a href="#edit-modal" class="edit modal-trigger btn waves-effect waves-light blue lighten-3"><i
+                                class="material-icons blue-text text-darken-4">mode_edit</i></a>
+                        <a href="#confirm-delete"
+                            class="delete modal-trigger btn waves-effect waves-light red lighten-3"><i
+                                class="material-icons red-text text-darken-4">delete</i></a>
+                    </td>
+                </tr>
+                <tr data-id="2">
+                    <td>2</td>
+                    <td>Opel</td>
+                    <td>Benzin</td>
+                    <td>
+                        <div class="valign-wrapper"><input disabled type="color" value="#008888"><span
+                                class="color-code">#008888</span></div>
+                    </td>
+                    <td>SUV</td>
+                    <td>0</td>
+                    <td>Sep 14, 2023</td>
+                    <td>
+                        <a class="refuel btn waves-effect waves-light green lighten-3"><i
+                                class="material-icons green-text text-darken-4">local_gas_station</i></a>
+                        <a href="#edit-modal" class="edit modal-trigger btn waves-effect waves-light blue lighten-3"><i
+                                class="material-icons blue-text text-darken-4">mode_edit</i></a>
+                        <a href="#confirm-delete"
+                            class="delete modal-trigger btn waves-effect waves-light red lighten-3"><i
+                                class="material-icons red-text text-darken-4">delete</i></a>
+                    </td>
+                </tr>
+                <tr data-id="3">
+                    <td>3</td>
+                    <td>VW</td>
+                    <td>Elektro</td>
+                    <td>
+                        <div class="valign-wrapper"><input disabled type="color" value="#006666"><span
+                                class="color-code">#006666</span></div>
+                    </td>
+                    <td>Pickup</td>
+                    <td>0</td>
+                    <td>Sep 14, 2023</td>
+                    <td>
+                        <a class="refuel btn waves-effect waves-light green lighten-3"><i
+                                class="material-icons green-text text-darken-4">local_gas_station</i></a>
+                        <a href="#edit-modal" class="edit modal-trigger btn waves-effect waves-light blue lighten-3"><i
+                                class="material-icons blue-text text-darken-4">mode_edit</i></a>
+                        <a href="#confirm-delete"
+                            class="delete modal-trigger btn waves-effect waves-light red lighten-3"><i
+                                class="material-icons red-text text-darken-4">delete</i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a id="new" href="#create-modal" class="modal-trigger waves-effect waves-light btn-large"><i
+                class="material-icons left">add_circle</i> Neues Auto</a>
+
+        <div id="confirm-delete" class="modal" data-id="0">
+            <div class="modal-content">
+                <h4>Bist du dir sicher, dass du <span class="confirm-delete-car-name"></span> löschen möchtest?</h4>
+                <p>Gib &quot;<span class="confirm-delete-car-name"></span>&quot; ein, um die Löschung zu bestätigen.</p>
+                <p>Ansonsten drücke ESC um abzubrechen</p>
+                <input type="text" id="confirm-delete-name-input">
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="confirm-delete-btn" class="waves-effect waves-green btn-flat" disabled>Löschen</a>
+            </div>
+        </div>
+
+        <div id="edit-modal" class="modal" data-id="0">
+            <div class="modal-content">
+                <h4>Bearbeiten von <span class="confirm-delete-car-name"></span></h4>
+                <form class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="new-name">
+                        <label for="new-name">Name</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select id="new-fuel">
+                            <option value="Benzin">Benzin</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Elektro">Elektro</option>
+                        </select>
+                        <label for="new-fuel">Kraftstoff</label>
+                    </div>
+                    <div class="input-field col s6 l3">
+                        <input type="color" id="new-color">
+                    </div>
+                    <div class="input-field col s6 l3">
+                        <input type="number" min="0" id="new-refuels">
+                        <label for="new-refuels">Betankungen</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" class="validate" id="new-type">
+                        <label for="new-type">Bauart</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" class="datepicker" id="new-last-refuel">
+                        <label for="new-last-refuel">Datum der letzten Betankung</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="save-edits-btn" class="waves-effect waves-green btn-flat">Speichern</a>
+            </div>
+        </div>
+
+        <div id="create-modal" class="modal" data-id="0">
+            <div class="modal-content">
+                <h4>Neues Auto</h4>
+                <form class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="new-name">
+                        <label for="new-name">Name</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select id="new-fuel">
+                            <option value="Benzin">Benzin</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Elektro">Elektro</option>
+                        </select>
+                        <label for="new-fuel">Kraftstoff</label>
+                    </div>
+                    <div class="input-field col s6 l3">
+                        <input type="color" id="new-color">
+                    </div>
+                    <div class="input-field col s6 l3">
+                        <input type="number" min="0" id="new-refuels">
+                        <label for="new-refuels">Betankungen</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" class="validate" id="new-type">
+                        <label for="new-type">Bauart</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" class="datepicker" id="new-last-refuel">
+                        <label for="new-last-refuel">Datum der letzten Betankung</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="save-new-btn" class="waves-effect waves-green btn-flat">Speichern</a>
+            </div>
+        </div>
+    </main>
+
+    <script id="car-template" type="text/x-handlebars-template">
+        {{#cars}}
+            {{#.}}
+                <tr data-id="{{id}}">
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{fuel}}</td>
+                <td>
+                    <div class="valign-wrapper"><input disabled type="color" value="{{color}}"><span class="color-code">{{color}}</span></div>
+                </td>
+                <td>{{type}}</td>
+                <td>{{refuels}}</td>
+                <td>{{lastRefuel}}</td>
+                <td>
+                    <a class="refuel btn waves-effect waves-light green lighten-3"><i
+                            class="material-icons green-text text-darken-4">local_gas_station</i></a>
+                    <a href="#edit-modal" class="edit modal-trigger btn waves-effect waves-light blue lighten-3"><i
+                            class="material-icons blue-text text-darken-4">mode_edit</i></a>
+                    <a href="#confirm-delete"
+                        class="delete modal-trigger btn waves-effect waves-light red lighten-3"><i
+                            class="material-icons red-text text-darken-4">delete</i></a>
+                </td>
+            {{/.}}
+        {{/cars}}
+    </script>
+</body>
+
+</html>
