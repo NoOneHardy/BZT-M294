@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .timepicker-digital-display {
+            background-color: pink;
+        }
+
+        .timepicker-canvas-bearing,
+        .timepicker-canvas-bg {
+            fill: pink;
+        }
+
+        .timepicker-svg line {
+            stroke: pink;
+        }
+
+        .confirmation-btns button {
+            color: pink;
+        }
+
+        .timepicker-tick.active,
+        .timepicker-tick:hover {
+            background-color: rgba(255, 192, 203, 0.25);
+        }
+    </style>
+
+    <!--     <div class="input-field">
+        <input type="date">
+        <input type="time">
+    </div>
+ -->
+    <!-- Date-Input -->
+    <div class="input-field">
+        <input type="text" id="time" class="timepicker">
+        <label for="date">Zeit</label>
+    </div>
+</body>
+
+<script>
+    $('#time').timepicker();
+
+    let time = `${(new Date()).getHours()}:${(new Date()).getMinutes()}`;
+    $('#time').val(time);
+    $('#time').timepicker({
+        format: "hh.MM.ss",
+        twelveHour: false,
+    });
+
+    console.log($('#time').val());
+</script>
+
+</html>

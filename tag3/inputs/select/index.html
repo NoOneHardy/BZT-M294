@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .dropdown-content li>span {
+            color: black;
+        }
+
+        .select-wrapper input.select-dropdown {
+            border-color: violet;
+        }
+    </style>
+
+    <div class="input-field">
+        <select id="select">
+            <option value="Benzin" selected>Benzin</option>
+            <option value="Diesel">Diesel</option>
+        </select>
+    </div>
+
+    <script>
+        $('select').formSelect();
+        console.log($('#select').val());
+
+        $('#select').val("Diesel");
+        $('select').formSelect();
+    </script>
+</body>
+
+</html>

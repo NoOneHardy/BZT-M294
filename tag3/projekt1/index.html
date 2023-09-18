@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+
+    <script>
+        $.getJSON('../../api/api.php', function (data) {
+            console.log('Alle Daten:');
+            console.log(data);
+        });
+
+        $.getJSON('../../api/api.php?id=1', function (data) {
+            console.log('Bestimmter Datensatz: ');
+            console.log(data);
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '../../api/api.php?id=1',
+            // data: "data",
+            dataType: "JSON",
+            success: function (response) {
+                console.log('Bestimmter Datensatz mit AJAX:');
+                console.log(response);
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '../../api/api.php?id=0', // update id > 0
+            data: {
+                name: "Tesla Model 3",
+                kraftstoff: "Elektro",
+                farbe: "#ffffff",
+                bauart: "Sport",
+                tanken: 0,
+                date: "Jan 10, 2022"
+            },
+            dataType: "JSON",
+            success: function (response) {
+                console.log('Neuer Datensatz mit AJAX:');
+                console.log(response);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

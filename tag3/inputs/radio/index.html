@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <style>
+        input[type="radio"]:checked+span:after {
+            background-color: red;
+            border-color: red;
+        }
+    </style>
+    Geschlecht:
+    <label>
+        <input type="radio" name="geschlecht" value="Mann" checked>
+        <span>Mann</span>
+    </label>
+    <label>
+        <input type="radio" name="geschlecht" value="Frau">
+        <span>Frau</span>
+    </label>
+    <label>
+        <input type="radio" name="geschlecht" value="Div.">
+        <span>Div.</span>
+    </label>
+
+    <script>
+        $('input[name="geschlecht"]').each(function (id) {
+            if ($(this).is(':checked')) {
+                console.log($(this).val())
+            }
+        });
+
+        $('input[name="geschlecht"]').each(function (id) {
+            if ($(this).val() == "Frau") {
+                $(this).prop("checked", true);
+            }
+        });
+    </script>
+</body>
+
+</html>

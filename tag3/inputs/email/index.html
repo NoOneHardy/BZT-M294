@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <style>
+        input.valid[type=email]:not(.browser-default), input.valid[type=email]:not(.browser-default):focus {
+            border-bottom: #00f;
+            box-shadow: 0 1px 0 0 #00f;
+        }
+    </style>
+
+    <div class="input-field">
+        <input type="email" name="email" id="email" class="validate">
+        <label for="email">Email</label>
+    </div>
+</body>
+
+<script>
+    $('#email').val("silas.hardegger@outlook.com");
+    console.log($('#email').val());
+</script>
+
+</html>

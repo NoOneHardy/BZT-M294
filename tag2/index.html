@@ -125,31 +125,31 @@
                 <h4>Bearbeiten von <span class="confirm-delete-car-name"></span></h4>
                 <form class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate" id="new-name">
-                        <label for="new-name">Name</label>
+                        <input type="text" class="validate" id="edit-name">
+                        <label for="edit-name">Name</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select id="new-fuel">
+                        <select id="edit-fuel">
                             <option value="Benzin">Benzin</option>
                             <option value="Diesel">Diesel</option>
                             <option value="Elektro">Elektro</option>
                         </select>
-                        <label for="new-fuel">Kraftstoff</label>
+                        <label for="edit-fuel">Kraftstoff</label>
                     </div>
                     <div class="input-field col s6 l3">
-                        <input type="color" id="new-color">
+                        <input type="color" id="edit-color">
                     </div>
                     <div class="input-field col s6 l3">
-                        <input type="number" min="0" id="new-refuels">
-                        <label for="new-refuels">Betankungen</label>
+                        <input type="number" min="0" id="edit-refuels">
+                        <label for="edit-refuels">Betankungen</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" class="validate" id="new-type">
-                        <label for="new-type">Bauart</label>
+                        <input type="text" class="validate" id="edit-type">
+                        <label for="edit-type">Bauart</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" class="datepicker" id="new-last-refuel">
-                        <label for="new-last-refuel">Datum der letzten Betankung</label>
+                        <input type="text" class="datepicker" id="edit-last-refuel">
+                        <label for="edit-last-refuel">Datum der letzten Betankung</label>
                     </div>
                 </form>
             </div>
@@ -198,18 +198,18 @@
     </main>
 
     <script id="car-template" type="text/x-handlebars-template">
-        {{#cars}}
+        {{#each data}}
             {{#.}}
                 <tr data-id="{{id}}">
                 <td>{{id}}</td>
                 <td>{{name}}</td>
-                <td>{{fuel}}</td>
+                <td>{{kraftstoff}}</td>
                 <td>
-                    <div class="valign-wrapper"><input disabled type="color" value="{{color}}"><span class="color-code">{{color}}</span></div>
+                    <div class="valign-wrapper"><input disabled type="color" value="{{farbe}}"><span class="color-code">{{farbe}}</span></div>
                 </td>
-                <td>{{type}}</td>
-                <td>{{refuels}}</td>
-                <td>{{lastRefuel}}</td>
+                <td>{{bauart}}</td>
+                <td>{{tanken}}</td>
+                <td>{{date}}</td>
                 <td>
                     <a class="refuel btn waves-effect waves-light green lighten-3"><i
                             class="material-icons green-text text-darken-4">local_gas_station</i></a>
@@ -220,7 +220,7 @@
                             class="material-icons red-text text-darken-4">delete</i></a>
                 </td>
             {{/.}}
-        {{/cars}}
+        {{/each}}
     </script>
 </body>
 

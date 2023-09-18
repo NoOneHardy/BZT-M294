@@ -26,6 +26,15 @@
             "type": "Pickup",
             "refuels": 0,
             "lastRefuel": "Sep 14, 2023"
+        },
+        {
+            "id": 4,
+            "name": "Tesla Model 3",
+            "fuel": "Elektro",
+            "color": "#FFFFFF",
+            "type": "Sport",
+            "refuels": 0,
+            "lastRefuel": "Sep 14, 2023"
         }
     ]
 }

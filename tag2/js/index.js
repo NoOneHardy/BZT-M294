@@ -1,37 +1,67 @@
-/* $('.delete').click(function (e) { 
-    e.preventDefault();
-    $(this).parent().parent().remove();
-}); */
-
 $(document).ready(function () {
     $('.modal').modal();
     $('.datepicker').datepicker();
     $('select').formSelect();
+    getCars();
 });
 
-let template = $('#car-template').html();
-let templateScript = Handlebars.compile(template);
+function getCars() {
+    $.ajax({
+        method: 'GET',
+        url: '../../api/api.php',
+        success: function (response) {
+            let template = $('#car-template').html();
+            let templateScript = Handlebars.compile(template);
 
-$.ajax({
-    type: "get",
-    url: "cars.json",
-    dataType: "JSON",
-    success: function (response) {
-        console.log(response);
-        let html = templateScript(response);
-        $('tbody').html(html);
-        reload();
-    }
-});
+            let html = templateScript(response);
+            $('tbody').html(html);
+            reload();
+        }
+    })
+}
+
+async function getCar(id) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            method: 'GET',
+            url: `../../api/api.php?id=${id}`,
+            success: function (response) {
+                resolve(response.data[0]); 
+            },
+            error: function (response) { 
+                reject(response);
+            }
+        });
+    })
+}
+
+function loadDeleteBtn() {
+    $('.delete').on('click', async function (e) {
+        e.preventDefault();
+
+        const id = $(this).parent().parent().attr('data-id');
+        const car = await getCar(id);
+
+        console.log(car);
+
+        showDeleteModal(car);
+    });
+}
+
+function showDeleteModal(car) {
+    const modal = $('#confirm-delete');
+
+}
 
 function reload() {
-    $('.delete').on('click', function (e) {
-        e.preventDefault();
-        let carName = $(this).parent().parent().find('td:nth-child(2)').html();
-        $('#confirm-delete').find('span.confirm-delete-car-name').html(carName);
-        $('#confirm-delete').attr('data-id', $(this).parent().parent().attr('data-id'));
-        $('#confirm-delete').find('input').val("");
-    });
+    loadDeleteBtn();
+    /*     $('.delete').on('click', function (e) {
+            e.preventDefault();
+            let carName = $(this).parent().parent().find('td:nth-child(2)').html();
+            $('#confirm-delete').find('span.confirm-delete-car-name').html(carName);
+            $('#confirm-delete').attr('data-id', $(this).parent().parent().attr('data-id'));
+            $('#confirm-delete').find('input').val("");
+        }); */
 
     $('#confirm-delete-name-input').on('keyup', function (e) {
         let modal = $(this).parent().parent()
@@ -44,8 +74,16 @@ function reload() {
 
     $('#confirm-delete-btn').on('click', function (e) {
         e.preventDefault();
-        $('table').find(`*[data-id=${$(this).parent().parent().attr('data-id')}]`).remove();
-        $(this).parent().parent().modal('close');
+        const modal = $(this).parent().parent();
+        $.ajax({
+            type: "DELETE",
+            url: `../../api/api.php?id=${modal.attr('data-id')}`,
+            // data: "data",
+            dataType: "JSON",
+            success: function (response) {
+                modal.modal('close');
+            }
+        });
     });
 
     $('.edit').on('click', function (e) {
@@ -61,26 +99,27 @@ function reload() {
 
         /* Namen einfügen */
         editModal.find('span.confirm-delete-car-name').html(carName);
-        editModal.find('#new-name').val(carName);
+        editModal.find('#edit-name').val(carName);
 
         /* Kraftstoff selektieren */
         editModal.find('option[selected="selected"]').removeAttr('selected');
         editModal.find(`option[value="${fuel}"]`).attr('selected', 'selected');
 
         /* Farbe setzen */
-        editModal.find('#new-color').val(color);
+        editModal.find('#edit-color').val(color);
 
         /* Bauart setzen */
-        editModal.find('#new-type').val(type);
+        editModal.find('#edit-type').val(type);
 
         /* Betankungen setzen */
-        editModal.find('#new-refuels').val(refuels);
+        editModal.find('#edit-refuels').val(refuels);
 
         /* Datum der letzten Betankung setzen */
-        editModal.find('#new-last-refuel').val(lastRefuel);
+        editModal.find('#edit-last-refuel').val(lastRefuel);
 
         editModal.attr('data-id', tr.attr('data-id'));
         M.updateTextFields();
+        $('select').formSelect();
     });
 
     $('#save-edits-btn').on('click', function (e) {
@@ -88,13 +127,13 @@ function reload() {
         const tr = $('table').find(`*[data-id=${$(this).parent().parent().attr('data-id')}]`);
         const editModal = $('#edit-modal');
 
-        tr.children('td:nth-child(2)').html(editModal.find('#new-name').val());
-        tr.children('td:nth-child(3)').html(editModal.find('#new-fuel').val());
-        tr.children('td:nth-child(4)').children().children('input').val(editModal.find('#new-color').val());
-        tr.children('td:nth-child(4)').children().children('.color-code').html(editModal.find('#new-color').val());
-        tr.children('td:nth-child(5)').html(editModal.find('#new-type').val());
-        tr.children('td:nth-child(6)').html(editModal.find('#new-refuels').val());
-        tr.children('td:nth-child(7)').html(editModal.find('#new-last-refuel').val());
+        tr.children('td:nth-child(2)').html(editModal.find('#edit-name').val());
+        tr.children('td:nth-child(3)').html(editModal.find('#edit-fuel').val());
+        tr.children('td:nth-child(4)').children().children('input').val(editModal.find('#edit-color').val());
+        tr.children('td:nth-child(4)').children().children('.color-code').html(editModal.find('#edit-color').val());
+        tr.children('td:nth-child(5)').html(editModal.find('#edit-type').val());
+        tr.children('td:nth-child(6)').html(editModal.find('#edit-refuels').val());
+        tr.children('td:nth-child(7)').html(editModal.find('#edit-last-refuel').val());
         $(this).parent().parent().modal('close');
     });
 
@@ -145,9 +184,17 @@ $('#save-new-btn').on('click', function (e) {
                 class="material-icons red-text text-darken-4">delete</i></a>
     </td>`
 
+    $('#create-name').val("");
+    createModal.find('option[selected="selected"]').removeAttr('selected');
+    $('#create-color').val("#000000");
+    $('#create-type').val();
+    $('#create-refuels').val(0);
+    $('#create-last-refuel').val(lastRefuel);
+
     $('tbody').append(`<tr data-id=${id}>${carContent}</tr>`);
     createModal.modal('close');
+
+    M.updateTextFields();
+    $('select').formSelect();
     reload();
 });
-
-reload();

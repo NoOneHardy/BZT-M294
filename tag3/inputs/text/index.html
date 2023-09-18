@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <style>
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: red;
+            box-shadow: 0 1px 0 0 red;
+        }
+
+        input[type=text]:not(.browser-default):focus:not([readonly])+label {
+            color: red;
+        }
+    </style>
+    <form>
+        <div class="input-field">
+            <input id="first_name" tabindex="1" type="text">
+            <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field">
+            <input id="first_name2" tabindex="3" type="text">
+            <label for="first_name2">First Name 2</label>
+        </div>
+        <div class="input-field">
+            <input id="first_name3" tabindex="2" type="text">
+            <label for="first_name3" >First Name 3</label>
+        </div>
+    </form>
+
+    <script>
+        $('#first_name').val("Alvin");
+        console.log($('#first_name').val());
+
+        M.updateTextFields();
+    </script>
+</body>
+
+</html>
