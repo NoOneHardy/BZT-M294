@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src='https://fonts.googleapis.com/icon?family=Material+Icons'></script>
+</head>
+
+<body>
+    <style>
+        input[type=email]:not(.browser-default).email-invalid {
+            border-bottom: 1px solid red;
+        }
+
+        input[type=email]:not(.browser-default).email-valid {
+            border-bottom: 3px dashed green;
+        }
+        
+        input[type=email]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: 1px solid black;
+            box-shadow: none;
+        }
+    </style>
+
+    <h1>Email</h1>
+    <form id="myForm" class="row">
+        <div class="input-field col s6">
+            <input name="email" type="email" id="email">
+            <label for="email">Email</label>
+        </div>
+        <div class="input-field col s2">
+            <input type="submit" value="Überprüfen">
+        </div>
+    </form>
+
+    <script>
+        // form submit
+        $('#myForm').submit((e) => {
+            e.preventDefault();
+            
+            // Get all values
+            let formData = $('#myForm').serializeArray();
+            console.log(formData);
+        });
+        
+        // #email loses focus
+        $('#email').blur(() => {
+            // Validate values
+            let value = $('#email').val();
+            console.log(value)
+
+            // value exists and value in range
+            if (emailCheck(value)) {
+                $('#email').addClass('email-valid');
+                $('#email').removeClass('email-invalid');
+            } else {
+                $('#email').addClass('email-invalid');
+                $('#email').removeClass('email-valid');
+            }
+        });
+
+        function emailCheck(email) {
+            let emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            let emailValid = emailReg.test(email);
+            console.log(emailValid);
+            return emailValid;
+        }
+
+    </script>
+</body>
+
+</html>

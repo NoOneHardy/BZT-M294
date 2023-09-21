@@ -1,0 +1,21 @@
+<div class="row">
+    {{#each data}}
+    <div class="col s12 row">
+        <div class="s3">{{id}}</div>
+        <div class="s9">{{zaehler}}</div>
+    </div>
+    {{/each}}
+</div>
+
+<table>
+    {{#each data}}
+    <tr data-id="{{id}}">
+        <td>{{id}}</td>
+        <td>{{zaehler}}</td>
+        <td>
+            <button class="up">UP</button>
+            <button class="down">DOWN</button>
+        </td>
+    </tr>
+    {{/each}}
+</table>

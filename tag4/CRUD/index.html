@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Material Icons -->
+    <script src='https://fonts.googleapis.com/icon?family=Material+Icons'></script>
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+    <h3>Form</h3>
+
+    <h3>Daten</h3>
+
+    <div id="data"></div>
+
+    <script>
+        // Erster Aufruf
+        getDatenUndDarstellen();
+
+        async function getDatenUndDarstellen() {
+            const template = await $.get('./sites/liste.hbs');
+            const compiledTemplate = Handlebars.compile(template)
+
+            $.ajax({
+                type: "GET",
+                url: "api/api.php",
+                dataType: "JSON",
+                success: function (response) {
+                    const html = compiledTemplate(response);
+                    $('#data').html(html);
+                }
+            });
+        }
+
+        $('body').on('click', '.up', function () {
+            const id = $(this).parent().parent().attr('data-id');
+            up(id);
+        });
+        $('body').on('click', '.down', function () {
+            const id = $(this).parent().parent().attr('data-id');
+            down(id);
+        });
+
+        async function up(id) {
+            let zaehler = await getZaehler(id);
+            zaehler = Number(zaehler) + 1;
+            const data = {
+                "zaehler": zaehler
+            }
+            update(id, data);
+        }
+
+        async function down(id) {
+            let zaehler = await getZaehler(id);
+            zaehler = zaehler - 1;
+            const data = {
+                "zaehler": zaehler
+            }
+            update(id, data);
+        }
+
+        function update(id, data) {
+            $.ajax({
+                method: 'POST',
+                url: `./api/api.php?id=${id}`,
+                data: data,
+                dataType: 'JSON',
+                success: () => {
+                    getDatenUndDarstellen()
+                }
+            })
+        }
+
+        async function getZaehler(id) {
+            const response = await $.ajax({
+                method: "GET",
+                url: `./api/api.php?id=${id}`,
+                dataType: "JSON"
+            });
+
+            return response.data[0].zaehler;
+        }
+    </script>
+</body>
+
+</html>

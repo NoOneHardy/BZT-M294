@@ -1,0 +1,92 @@
+{
+    "vereine": [
+        {
+            "name": "Verein Alpha",
+            "mitglieder": [
+                {
+                    "name": "Max Mustermann",
+                    "alter": 28
+                },
+                {
+                    "name": "Anna Musterfrau",
+                    "alter": 31
+                },
+                {
+                    "name": "Paul Beispiel",
+                    "alter": 24
+                },
+                {
+                    "name": "Eva Beispielfrau",
+                    "alter": 29
+                },
+                {
+                    "name": "Felix Tester",
+                    "alter": 35
+                }
+            ]
+        },
+        {
+            "name": "Verein Beta",
+            "mitglieder": [
+                {
+                    "name": "Lara Test",
+                    "alter": 27
+                },
+                {
+                    "name": "Lukas Beispel",
+                    "alter": 32
+                },
+                {
+                    "name": "Mara Muster",
+                    "alter": 26
+                }
+            ]
+        },
+        {
+            "name": "Verein Gamma",
+            "mitglieder": [
+                {
+                    "name": "Tom Tester",
+                    "alter": 25
+                },
+                {
+                    "name": "Lea Testfrau",
+                    "alter": 29
+                },
+                {
+                    "name": "Sara Beispiel",
+                    "alter": 28
+                },
+                {
+                    "name": "Mike Test",
+                    "alter": 27
+                }
+            ]
+        },
+        {
+            "name": "Verein Delta",
+            "mitglieder": [
+                {
+                    "name": "Sophia Muster",
+                    "alter": 22
+                },
+                {
+                    "name": "Ben Tester",
+                    "alter": 34
+                },
+                {
+                    "name": "Lina Beispelfrau",
+                    "alter": 31
+                },
+                {
+                    "name": "Leo Testmann",
+                    "alter": 29
+                },
+                {
+                    "name": "Emma Beispiel",
+                    "alter": 26
+                }
+            ]
+        }
+    ]
+}

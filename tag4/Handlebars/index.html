@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+
+    <!-- Material Icons -->
+    <script src='https://fonts.googleapis.com/icon?family=Material+Icons'></script>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+    <h3>Vereine</h3>
+    <div id="data"></div>
+
+    <script>
+        async function loadData() {
+            const template = await $.get('./sites/verein_table.hbs');
+            const compiledTemplate = Handlebars.compile(template);
+
+            const data = await $.get('./assets/json/vereine.json');
+
+            console.log("Es gibt " + data.vereine.length + " Vereine.");
+            let vereinCount = 0;
+            data.vereine.map((verein) => {
+                if (verein.mitglieder.length > 4) {
+                    vereinCount++;
+                } 
+            })
+            console.log(vereinCount + " Vereine haben mehr als 4 Mitglieder");
+
+            const html = compiledTemplate(data);
+            $('#data').html(html);
+        }
+
+        loadData();
+        console.log(`Tage seit meinem Geburtstag: ${Math.round((new Date() - new Date('06-21-2007')) / 1000 / 60 / 60 / 24)}`);
+        console.log(`Millisekunden seit meinem Geburtstag: ${Math.round(new Date() - new Date('06-21-2007'))}`);
+    </script>
+</body>
+
+</html>

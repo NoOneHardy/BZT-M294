@@ -1,0 +1,17 @@
+{{#each vereine}}
+<h4>{{name}}</h4>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Alter</th>
+    </thead>
+    <tbody>
+        {{#each mitglieder}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{alter}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/each}}
