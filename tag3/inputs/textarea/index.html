@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel="stylesheet">
+    </link>
+</head>
+
+<body>
+    <style>
+
+        /* Icon infront of textarea */
+        .input-field .prefix.active {
+            color: red;
+        }
+
+        /* Label when textarea is focused */
+        #textarea1:focus~label {
+            color: red;
+        }
+
+        /* Textarea on focus */
+        textarea.materialize-textarea:focus:not([readonly]) {
+            border-bottom: 1px solid red;
+            -webkit-box-shadow: 0 1px 0 0 red;
+            box-shadow: 0 1px 0 0 red;
+            
+            /* Gradient Text */
+            -webkit-text-fill-color: transparent;
+            background-clip: unset;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(to right, blue, yellow);
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Textarea</label>
+        </div>
+    </div>
+
+    <script>
+        M.textareaAutoResize($('#textarea1'));
+    </script>
+</body>
+
+</html>
