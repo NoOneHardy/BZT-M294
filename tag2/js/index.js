@@ -13,7 +13,7 @@ $(document).ready(async function () {
 
 function loadCars() {
     return new Promise(async (resolve, reject) => {
-        cars = await getCars();
+        const cars = await getCars();
 
         if (!cars) {
             reject()
