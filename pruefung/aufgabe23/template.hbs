@@ -1,0 +1,42 @@
+{{#each books}}
+<div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+        <span class="card-title">{{title}}</span>
+        {{#if lagerbestand}}
+        <span class="material-icons right green">
+            done
+        </span>
+        {{else}}
+        <i class="material-icons right red">
+            close
+        </i>
+        {{/if}}
+        <p>{{publishedDate}}</p>
+        <h3 class="yellow black-text">Autoren</h3>
+        <table class="blue-grey darken-1">
+            <tbody>
+                {{#each authors}}
+                <tr>
+                    <td>{{firstName}}</td>
+                    <td>{{lastName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <h3 class="grey lighten-2 black-text">Reviews</h3>
+        <table class="blue-grey darken-1">
+            <tbody>
+                {{#each reviews}}
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{comment}}</td>
+                    <td>{{rating}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{/each}}

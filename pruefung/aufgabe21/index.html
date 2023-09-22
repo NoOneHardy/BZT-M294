@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M294 - LB</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <h1>M294 - LB</h1>
+    <h5>Aufgabe: XXXXXXXXXXXXXXXXXXXXXXX</h5>
+    <p>Aufgabentext</p>
+    <hr>
+    <h5>Lösung:</h5>
+    <div class="input-field">
+        <input type="text" id="date" class="datepicker">
+        <label for="date">Datum</label>
+    </div>
+
+
+    <style>
+        .datepicker-date-display,
+        .is-selected>.datepicker-day-button {
+            background-color: gray;
+            color: black;
+        }
+
+        .is-today:not(.is-selected) .datepicker-day-button {
+            color: black;
+        }
+
+        .confirmation-btns button {
+            color: gray;
+        }
+
+        .date-text {
+            color: white;
+        }
+
+        .datepicker-controls {
+            display: none;
+        }
+    </style>
+
+    <script>
+        let today = new Date()
+        today.setDate(today.getDate() + 3);
+        $('#date').val(new Date());
+        $('#date').datepicker({
+            setDefaultDate: true,
+            format: "dd.mm.yyyy",
+            i18n: {
+                labelMonthNext: 'Nexter Monat',
+                labelMonthPrev: 'Vorheriger Monat',
+                labelMonthSelect: 'Monat wählen',
+                labelYearSelect: 'Jahr wählen',
+                months: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                monthsShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                monthsLong: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+                weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+                weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                weekdaysAbbrev: ['S', 'M', 'D', 'M', 'D', 'F', 'S'],
+                today: 'Heute',
+                close: 'schliessen',
+                cancel: 'abbrechen',
+                clear: 'löschen',
+                done: 'wählen'
+            },
+            minDate: new Date(),
+            maxDate: today
+        });
+    </script>
+</body>
+
+</html>

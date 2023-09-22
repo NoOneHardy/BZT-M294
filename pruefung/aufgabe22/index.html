@@ -24,7 +24,22 @@
     </style>
 
     <script>
-        /* ------------------------------------------------------------------------ Ihr JS - Code */
+        const data = {
+            vorname: "Hans",
+            wohnort: "Frauenfeld"
+        }
+        $.ajax({
+            type: "POST",
+            url: "api.php?id=0",
+            data: data,
+            dataType: "HTML",
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (response) {
+                console.warn(response);
+            }
+        });
        
     </script>
 </body>

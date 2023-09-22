@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M294 - LB</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+</head>
+
+<body>
+    <h1>M294 - LB</h1>
+    <h5>Aufgabe: XXXXXXXXXXXXXXXXXXXXXXX</h5>
+    <p>Aufgabentext</p>
+    <hr>
+    <h5>Lösung:</h5>
+    <table>
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="name">Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="1">
+                <td>1</td>
+                <td>
+                    <div class="text">Eclair</div>
+                </td>
+                </tr#>
+            <tr id="2">
+                <td>2</td>
+                <td>
+                    <div class="text">Jellybean</div>
+                </td>
+            </tr>
+            <tr id="3">
+                <td>3</td>
+                <td>
+                    <div class="text">lollipop</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let previousValue = "";
+        $('body').on('click', '.text', function (e) {
+            e.preventDefault();
+            previousValue = $(this).html();
+            $(this).parent().html(`<input id="newText" type="text" value="${$(this).html()}">`);
+            $('#newText').focus();
+        });
+
+        $('body').on('blur', '#newText', function (e) {
+            e.preventDefault();
+            if ($(this).val() !== "") {
+                if ($(this).val() === previousValue) {
+                    console.log('no changes');
+                } else {
+                    console.log('saving is required')
+                }
+
+                $(this).parent().html(`<div class="text">${$(this).val()}</div`);
+            }
+        });
+
+        $('body').on('keypress', '#newText', function (e) {
+            if (e.which === 13 && $(this).val() !== "") {
+                $(this).parent().html(`<div class="text">${$(this).val()}</div`);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

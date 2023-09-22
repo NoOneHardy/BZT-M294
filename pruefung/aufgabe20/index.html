@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +10,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
 </head>
+
 <body>
     <h1>M294 - LB</h1>
     <h5>Aufgabe: XXXXXXXXXXXXXXXXXXXXXXX</h5>
     <p>Aufgabentext</p>
     <hr>
     <h5>Lösung:</h5>
-        <!-- --------------------------------------------------------------------- Ihr HTML - Code -->
+    <p>
+        <label>
+            <input name="group1" value="red" type="radio">
+            <span>Red</span>
+        </label>
+        <br>
+        <label>
+            <input name="group1" value="green" type="radio" />
+            <span>Green</span>
+        </label>
+    </p>
+    <button id="read" class="btn">Wert lesen</button>
+    <p id="werte"></p>
 
 
     <style>
-         /* ----------------------------------------------------------------------- Ihr CSS - Style - Code */
-
+        /* ----------------------------------------------------------------------- Ihr CSS - Style - Code */
     </style>
 
     <script>
-        /* ------------------------------------------------------------------------ Ihr JS - Code */
-       
+        $('input[value="red"]').prop('checked', 'checked');
+
+        $('#read').on('click', function (e) {
+            let farbe = $('input:checked').val();
+            $('#werte').html(farbe + "<br>" + $('#werte').html())
+        });
     </script>
 </body>
+
 </html>
