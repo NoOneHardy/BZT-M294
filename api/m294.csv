@@ -1,0 +1,5 @@
+id;name;kraftstoff;farbe;bauart;tanken;date;bemerkung;status
+2;BMW;Elektro;#00ffee;Kombi;10;Sep 21, 2023;;
+3;Audi;Benzin;#828282;Sport;1;Sep 21, 2023;;
+4;Audi;Elektro;#ee1111;Kombi;2;Sep 21, 2023;;
+5;Tesla;Elektro;#bd0000;Sport;2;Sep 21, 2023;;
